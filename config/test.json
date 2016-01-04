@@ -1,0 +1,6 @@
+{
+  "HOST": ""
+, "HOSTS": {
+    "GROUPS": "https://api.defacto.io/groups"
+  }
+}
