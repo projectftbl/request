@@ -19,10 +19,12 @@
   "dependencies": {
     "@ftbl/configuration": "^1.0.0",
     "@ftbl/utility": "^1.0.0",
-    "axios": "^0.5.4",
+    "axios": "^0.11.0",
+    "bluebird": "^3.3.5",
     "lodash": "^3.10.1",
     "qs": "^4.0.0",
-    "require-dir": "^0.3.0"
+    "require-dir": "^0.3.0",
+    "restify": "^4.0.4"
   },
   "devDependencies": {
     "@ftbl/gulp": "^1.0.0",
