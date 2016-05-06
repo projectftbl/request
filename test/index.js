@@ -9,14 +9,18 @@ var fake = { then: function(response) { return { data: null }}};
 
 describe('Request', function() {
 
-  var axios = {
-    get: sinon.stub().returns(fake)
-  , post: sinon.stub().returns(fake)
-  , put: sinon.stub().returns(fake)
-  , delete: sinon.stub().returns(fake)
+  var client = {
+    getAsync: sinon.stub().returns(fake)
+  , postAsync: sinon.stub().returns(fake)
+  , putAsync: sinon.stub().returns(fake)
+  , deleteAsync: sinon.stub().returns(fake)      
   };
 
-  var sut = proxyquire('../lib', { axios: axios })
+  var restify = {
+    createJsonClient: sinon.stub().returns(client)
+  };
+
+  var sut = proxyquire('../lib', { restify: restify })
     , data = { name: 'john' };
 
   describe('#get', function() {
@@ -25,8 +29,8 @@ describe('Request', function() {
       sut('users/users').get();
     });
 
-    it('should call axios.get', function() {
-      axios.get.should.have.been.called;
+    it('should call client.getAsync', function() {
+      client.getAsync.should.have.been.called;
     });
 
   });
@@ -34,32 +38,32 @@ describe('Request', function() {
   describe('#get with string query', function() {
 
     before(function() {
-      axios.get.reset();
+      client.getAsync.reset();
       sut('users/users').get('q=123');
     });
 
-    it('should call axios.get', function() {
-      axios.get.should.have.been.called;
+    it('should call client.getAsync', function() {
+      client.getAsync.should.have.been.called;
     });
 
-    it('should call axios.get with correct url', function() {
-      axios.get.should.have.been.calledWith('/users?q=123');
+    it('should call client.getAsync with correct url', function() {
+      client.getAsync.should.have.been.calledWith('/users?q=123');
     });
   });
 
   describe('#get with hash query', function() {
 
     before(function() {
-      axios.get.reset();
+      client.getAsync.reset();
       sut('users/users').get({ q: 123, count: 10 });
     });
 
-    it('should call axios.get', function() {
-      axios.get.should.have.been.called;
+    it('should call client.getAsync', function() {
+      client.getAsync.should.have.been.called;
     });
 
-    it('should call axios.get with correct url', function() {
-      axios.get.should.have.been.calledWith('/users?q=123&count=10');
+    it('should call client.getAsync with correct url', function() {
+      client.getAsync.should.have.been.calledWith('/users?q=123&count=10');
     });
   });
 
@@ -69,12 +73,12 @@ describe('Request', function() {
       sut('users/users').post(data);
     });
 
-    it('should call axios.post', function() {
-      axios.post.should.have.been.called;
+    it('should call client.postAsync', function() {
+      client.postAsync.should.have.been.called;
     });
 
-    it('should call axios.post with correct parameters', function() {
-      axios.post.should.have.been.calledWith('/users', data);
+    it('should call client.postAsync with correct parameters', function() {
+      client.postAsync.should.have.been.calledWith('/users', data);
     });
 
   });
@@ -85,12 +89,12 @@ describe('Request', function() {
       sut('users/users/123').put(data);
     });
 
-    it('should call axios.put', function() {
-      axios.put.should.have.been.called;
+    it('should call client.putAsync', function() {
+      client.putAsync.should.have.been.called;
     });
 
-    it('should call axios.put with correct parameters', function() {
-      axios.put.should.have.been.calledWith('/users/123', data);
+    it('should call client.putAsync with correct parameters', function() {
+      client.putAsync.should.have.been.calledWith('/users/123', data);
     });
 
   });
@@ -101,12 +105,12 @@ describe('Request', function() {
       sut('users/users/123').delete();
     });
 
-    it('should call axios.delete', function() {
-      axios.delete.should.have.been.called;
+    it('should call client.deleteAsync', function() {
+      client.deleteAsync.should.have.been.called;
     });
 
-    it('should call axios.delete with correct url', function() {
-      axios.delete.should.have.been.calledWith('/users/123');
+    it('should call client.deleteAsync with correct url', function() {
+      client.deleteAsync.should.have.been.calledWith('/users/123');
     });
 
   });
