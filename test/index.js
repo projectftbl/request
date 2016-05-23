@@ -13,7 +13,7 @@ describe('Request', function() {
     getAsync: sinon.stub().returns(fake)
   , postAsync: sinon.stub().returns(fake)
   , putAsync: sinon.stub().returns(fake)
-  , deleteAsync: sinon.stub().returns(fake)      
+  , delAsync: sinon.stub().returns(fake)      
   };
 
   var restify = {
@@ -106,11 +106,11 @@ describe('Request', function() {
     });
 
     it('should call client.deleteAsync', function() {
-      client.deleteAsync.should.have.been.called;
+      client.delAsync.should.have.been.called;
     });
 
     it('should call client.deleteAsync with correct url', function() {
-      client.deleteAsync.should.have.been.calledWith('/users/123');
+      client.delAsync.should.have.been.calledWith('/users/123');
     });
 
   });
