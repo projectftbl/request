@@ -1,6 +1,6 @@
 {
   "name": "@ftbl/request",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Request helper",
   "main": "node index",
   "scripts": {
