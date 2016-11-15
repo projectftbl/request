@@ -1,5 +1,5 @@
 {
-  "name": "@ftbl/request",
+  "name": "@recipher/request",
   "version": "1.2.2",
   "description": "Request helper",
   "main": "node index",
@@ -14,11 +14,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:projectftbl/request.git"
+    "url": "git@github.com:recipher/request.git"
   },
   "dependencies": {
-    "@ftbl/configuration": "^1.0.0",
-    "@ftbl/utility": "^1.0.0",
+    "@recipher/configuration": "^1.0.0",
+    "@recipher/utility": "^1.0.0",
     "axios": "^0.11.0",
     "bluebird": "^3.3.5",
     "lodash": "^3.10.1",
@@ -27,7 +27,7 @@
     "restify": "^4.0.4"
   },
   "devDependencies": {
-    "@ftbl/gulp": "^1.0.0",
+    "@recipher/gulp": "^1.0.0",
     "chai": "^3.4.1",
     "gulp": "^3.9.0",
     "mocha": "^2.3.4",
